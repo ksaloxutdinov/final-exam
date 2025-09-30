@@ -1,0 +1,158 @@
+{
+  "info": {
+    "name": "Airways System API",
+    "_postman_id": "12345678-aaaa-bbbb-cccc-1234567890ab",
+    "description": "API Collection for Airways Booking System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{baseUrl}}/auth/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"John Doe\",\n  \"email\": \"john@mail.com\",\n  \"password\": \"123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{baseUrl}}/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@mail.com\",\n  \"password\": \"123456\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Flights",
+      "item": [
+        {
+          "name": "Search Flights",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/flights/search?from=TAS&to=JFK&departure=2025-10-05&return=2025-10-10&class=ECONOM"
+          }
+        },
+        {
+          "name": "Get Flight By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/flights/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": "{{baseUrl}}/bookings",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flight_id\": \"uuid\",\n  \"seat_id\": \"uuid\"\n}"
+            }
+          }
+        },
+        {
+          "name": "My Bookings",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": "{{baseUrl}}/bookings/my"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Add Review",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": "{{baseUrl}}/reviews",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flight_id\": \"uuid\",\n  \"rating\": 5,\n  \"comment\": \"Excellent flight!\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Loyalty",
+      "item": [
+        {
+          "name": "My Points",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": "{{baseUrl}}/loyalty/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "News",
+      "item": [
+        {
+          "name": "Get News",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/news"
+          }
+        },
+        {
+          "name": "Add News",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": "{{baseUrl}}/news",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"New Flight Announced\",\n  \"content\": \"We are starting new flights!\",\n  \"image_url\": \"https://example.com/img.jpg\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Create Admin",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": "{{baseUrl}}/admin/create",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Jane Doe\",\n  \"email\": \"admin@mail.com\",\n  \"password\": \"admin123\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:3000"},
+    {"key": "token", "value": ""}
+  ]
+}
